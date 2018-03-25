@@ -1,0 +1,37 @@
+<div class="panel panel-primary">
+	
+	<div class="panel-heading">
+		{{ title }}
+	</div>
+	
+	<div class="panel-body">
+		<form [formGroup]="angForm" novalidate>
+			
+			<div class="form-group">
+				<label class="col-md-4">Currency name</label>
+				<input type="text" class="form-control" formControlName="coinName" #coinName />
+			</div>
+			<div *ngIf="angForm.controls['coinName'].invalid && (angForm.controls['coinName'].dirty || angForm.controls['coinName'].touched)" class="alert alert-danger">
+				<div *ngIf="angForm.controls['coinName'].errors.required">
+					Name is required
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-md-4">Currency price</label>
+				<input type="text" class="form-control" formControlName="coinPrice" #coinPrice />
+			</div>
+			<div *ngIf="angForm.controls['coinPrice'].invalid && (angForm.controls['coinPrice'].dirty || angForm.controls['coinPrice'].touched)" class="alert alert-danger">
+				<div *ngIf="angForm.controls['coinPrice'].errors.required">
+					Price is required
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<button (click)="addCoin(coinName.value, coinPrice.value)" [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary">Add Currency</button>
+			</div>
+			
+		</form>
+	</div>
+	
+</div>
